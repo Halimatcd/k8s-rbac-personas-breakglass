@@ -1,0 +1,20 @@
+{
+  "name": "Kubernetes & Docker Dev Environment",
+  "image": "://microsoft.com",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "version": "latest",
+      "installMinikube": false,
+      "installHelm": false
+    },
+    "ghcr.io/devcontainers/features/jq:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/kind:1": {
+      "version": "latest"
+    }
+  }
+}
