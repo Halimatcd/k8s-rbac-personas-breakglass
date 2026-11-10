@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-hoaminu
+  namespace: rbac-hoaminu
+  labels:
+    owner: hoaminu
+data:
+  app.conf: |
+    owner: hoaminu
+    purpose: CLO835 RBAC personas demo
+  index.html: |
+    <h1>owner: hoaminu</h1>

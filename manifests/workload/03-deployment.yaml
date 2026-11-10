@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-hoaminu
+  namespace: rbac-hoaminu
+  labels:
+    app: web-hoaminu
+    owner: hoaminu
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-hoaminu
+  template:
+    metadata:
+      labels:
+        app: web-hoaminu
+        owner: hoaminu
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: site
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: site
+          configMap:
+            name: app-config-hoaminu
