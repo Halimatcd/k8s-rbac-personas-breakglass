@@ -1,8 +1,7 @@
 ==> 0/6 preflight
 ==> 1/6 render manifests from templates (SID=hoaminu)
 ==> 2/6 kind cluster 'clo835'
-ERROR: failed to create cluster: invalid configuration for node 1: "worker." is not a valid node role
-
-real	0m0.400s
-user	0m0.162s
-sys	0m0.195s
+Creating cluster "clo835" ...
+ • Ensuring node image (kindest/node:v1.37.0) 🖼️  ...
+ ✓ Ensuring node image (kindest/node:v1.37.0) 🖼️
+ • Preparing nodes 📦 📦   ...
