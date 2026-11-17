@@ -26,3 +26,4 @@ ci create deployments no
 ci get secrets no
 ci list deployments no
 ci get configmaps no
+readonly patch deployments no
