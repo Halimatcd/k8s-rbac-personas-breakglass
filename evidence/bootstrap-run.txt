@@ -5,3 +5,108 @@ Creating cluster "clo835" ...
  • Ensuring node image (kindest/node:v1.37.0) 🖼️  ...
  ✓ Ensuring node image (kindest/node:v1.37.0) 🖼️
  • Preparing nodes 📦 📦   ...
+ ✓ Preparing nodes 📦 📦 
+ • Writing configuration 📜  ...
+ ✓ Writing configuration 📜
+ • Starting control-plane 🕹️  ...
+ ✓ Starting control-plane 🕹️
+ • Installing CNI 🔌  ...
+ ✓ Installing CNI 🔌
+ • Installing StorageClass 💾  ...
+ ✓ Installing StorageClass 💾
+ • Joining worker nodes 🚜  ...
+ ✓ Joining worker nodes 🚜
+Set kubectl context to "kind-clo835"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-clo835
+
+Thanks for using kind! 😊
+==> 3/6 RBAC objects
+namespace/rbac-hoaminu created
+serviceaccount/deployer-hoaminu created
+serviceaccount/readonly-hoaminu created
+serviceaccount/ci-hoaminu created
+role.rbac.authorization.k8s.io/deployer-role-hoaminu created
+role.rbac.authorization.k8s.io/ci-role-hoaminu created
+role.rbac.authorization.k8s.io/readonly-role-hoaminu created
+rolebinding.rbac.authorization.k8s.io/deployer-binding-hoaminu created
+rolebinding.rbac.authorization.k8s.io/readonly-binding-hoaminu created
+rolebinding.rbac.authorization.k8s.io/ci-binding-hoaminu created
+==> 4/6 demo workload
+configmap/app-config-hoaminu created
+secret/db-creds-hoaminu created
+deployment.apps/web-hoaminu created
+service/web-hoaminu created
+Waiting for deployment "web-hoaminu" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "web-hoaminu" rollout to finish: 1 of 2 updated replicas are available...
+deployment "web-hoaminu" successfully rolled out
+==> 5/6 persona kubeconfigs
+  minted kubeconfigs/deployer.kubeconfig (valid 48h)
+  minted kubeconfigs/readonly.kubeconfig (valid 48h)
+  minted kubeconfigs/ci.kubeconfig (valid 48h)
+==> 6/6 permission test suite
+PASS  deployer create deployments (expected=yes)
+PASS  deployer delete pods (expected=yes)
+PASS  deployer patch configmaps (expected=yes)
+PASS  deployer list services (expected=yes)
+PASS  deployer get secrets (expected=no)
+PASS  deployer list roles.rbac.authorization.k8s.io (expected=no)
+PASS  deployer create rolebindings.rbac.authorization.k8s.io (expected=no)
+PASS  deployer get pods:log (expected=no)
+PASS  deployer patch deployments:scale (expected=no)
+PASS  readonly get pods (expected=yes)
+PASS  readonly list deployments (expected=yes)
+PASS  readonly list events (expected=yes)
+PASS  readonly watch services (expected=yes)
+PASS  readonly get secrets (expected=no)
+PASS  readonly create pods (expected=no)
+PASS  readonly delete deployments (expected=no)
+PASS  readonly get replicasets (expected=no)
+PASS  readonly patch configmaps (expected=no)
+PASS  ci patch deployments (expected=yes)
+PASS  ci get deployments (expected=yes)
+PASS  ci list pods (expected=no)
+PASS  ci get pods:log (expected=no)
+PASS  ci delete deployments (expected=no)
+PASS  ci create deployments (expected=no)
+PASS  ci get secrets (expected=no)
+PASS  ci list deployments (expected=no)
+PASS  ci get configmaps (expected=no)
+PASS  readonly patch deployments (expected=no)
+---- 28 passed, 0 failed ----
+Bootstrap finished OK in 86s
+
+real	1m26.061s
+user	0m5.233s
+sys	0m3.162s
+
+### healthy state
+NAME                               READY   STATUS    RESTARTS   AGE
+pod/web-hoaminu-578c646474-lgrml   1/1     Running   0          23s
+pod/web-hoaminu-578c646474-qlsnx   1/1     Running   0          23s
+
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/web-hoaminu   ClusterIP   10.96.112.207   <none>        80/TCP    23s
+
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/web-hoaminu   2/2     2            2           23s
+
+NAME                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/web-hoaminu-578c646474   2         2         2       23s
+
+NAME                              AGE
+serviceaccount/ci-hoaminu         30s
+serviceaccount/default            30s
+serviceaccount/deployer-hoaminu   30s
+serviceaccount/readonly-hoaminu   30s
+
+NAME                                                   CREATED AT
+role.rbac.authorization.k8s.io/ci-role-hoaminu         2026-11-17T04:25:24Z
+role.rbac.authorization.k8s.io/deployer-role-hoaminu   2026-11-17T04:25:24Z
+role.rbac.authorization.k8s.io/readonly-role-hoaminu   2026-11-17T04:25:24Z
+
+NAME                                                             ROLE                         AGE
+rolebinding.rbac.authorization.k8s.io/ci-binding-hoaminu         Role/ci-role-hoaminu         30s
+rolebinding.rbac.authorization.k8s.io/deployer-binding-hoaminu   Role/deployer-role-hoaminu   30s
+rolebinding.rbac.authorization.k8s.io/readonly-binding-hoaminu   Role/readonly-role-hoaminu   30s
